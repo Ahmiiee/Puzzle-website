@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maze Puzzle Solver</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f4;
+    }
+
+    #maze {
+      display: grid;
+      grid-template-columns: repeat(5, 40px);
+      grid-template-rows: repeat(5, 40px);
+      gap: 5px;
+      border: 2px solid #000;
+    }
+
+    .cell {
+      width: 40px;
+      height: 40px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .wall {
+      background-color: #000;
+    }
+
+    .start {
+      background-color: #4CAF50;
+    }
+
+    .end {
+      background-color: #FF6347;
+    }
+
+    .path {
+      background-color: #87CEEB;
+    }
+
+    #popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 20px;
+      border: 2px solid #000;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      font-size: 18px;
+      z-index: 1000;
+    }
+
+    #popup button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #popup button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="maze"></div>
+  <div id="popup">
+    <p>Congratulations! You solved the maze.</p>
+    <button onclick="closePopup()">Close</button>
+  </div>
+
+  <script>
+    const mazeLayout = [
+      [2, 0, 1, 0, 0],
+      [1, 0, 1, 0, 0],
+      [1, 0, 1, 1, 0],
+      [1, 0, 0, 0, 0],
+      [0, 0, 1, 1, 3]
+    ];
+
+    const mazeContainer = document.getElementById('maze');
+    const rows = mazeLayout.length;
+    const cols = mazeLayout[0].length;
+
+    function createMaze() {
+      for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+          const cell = document.createElement('div');
+          cell.classList.add('cell');
+
+          if (mazeLayout[row][col] === 1) {
+            cell.classList.add('wall');
+          } else if (mazeLayout[row][col] === 2) {
+            cell.classList.add('start');
+            cell.id = 'start';
+          } else if (mazeLayout[row][col] === 3) {
+            cell.classList.add('end');
+            cell.id = 'end';
+          }
+
+          mazeContainer.appendChild(cell);
+        }
+      }
+    }
+
+    let playerPosition = { x: 0, y: 0 };
+    const player = document.getElementById('start');
+
+    function movePlayer(e) {
+      let newX = playerPosition.x;
+      let newY = playerPosition.y;
+
+      if (e.key === 'ArrowUp' && newX > 0 && mazeLayout[newX - 1][newY] !== 1) {
+        newX--;
+      } else if (e.key === 'ArrowDown' && newX < rows - 1 && mazeLayout[newX + 1][newY] !== 1) {
+        newX++;
+      } else if (e.key === 'ArrowLeft' && newY > 0 && mazeLayout[newX][newY - 1] !== 1) {
+        newY--;
+      } else if (e.key === 'ArrowRight' && newY < cols - 1 && mazeLayout[newX][newY + 1] !== 1) {
+        newY++;
+      }
+
+      if (mazeLayout[newX][newY] !== 1) {
+        playerPosition = { x: newX, y: newY };
+        updatePlayerPosition();
+      }
+
+      checkForCompletion();
+    }
+
+    function updatePlayerPosition() {
+      const cells = mazeContainer.getElementsByClassName('cell');
+      const index = playerPosition.x * cols + playerPosition.y;
+      const currentCell = cells[index];
+
+      const previousPlayerCell = document.querySelector('.start');
+      if (previousPlayerCell) {
+        previousPlayerCell.classList.remove('start');
+      }
+
+      currentCell.classList.add('start');
+    }
+
+    function checkForCompletion() {
+      if (playerPosition.x === 4 && playerPosition.y === 4) {
+        showPopup();
+      }
+    }
+
+    function showPopup() {
+      document.getElementById('popup').style.display = 'block';
+    }
+
+    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+      playerPosition = { x: 0, y: 0 };
+      updatePlayerPosition();
+    }
+
+    window.addEventListener('keydown', movePlayer);
+
+    createMaze();
+  </script>
+
+</body>
+</html>

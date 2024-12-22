@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Search Puzzle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(6, 40px);
+            gap: 5px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .grid div {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ccc;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .selected {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1>Word Search Puzzle</h1>
+    <p>Find the word: <strong>HELLO</strong></p>
+    <div class="grid" id="grid">
+        <div>H</div><div>A</div><div>L</div><div>O</div><div>L</div><div>P</div>
+        <div>E</div><div>Z</div><div>K</div><div>I</div><div>O</div><div>S</div>
+        <div>L</div><div>F</div><div>L</div><div>O</div><div>M</div><div>N</div>
+        <div>L</div><div>G</div><div>L</div><div>L</div><div>O</div><div>E</div>
+        <div>O</div><div>H</div><div>O</div><div>N</div><div>Q</div><div>O</div>
+        <div>H</div><div>E</div><div>L</div><div>L</div><div>O</div><div>Y</div>
+    </div>
+    <script>
+        const grid = document.getElementById('grid');
+        let selectedWord = '';
+
+        grid.addEventListener('click', (e) => {
+            if (e.target.tagName === 'DIV') {
+                e.target.classList.toggle('selected');
+                selectedWord += e.target.textContent;
+
+                if (selectedWord === 'HELLO') {
+                    alert('Congratulations! You found the word: HELLO!');
+                    resetGrid();
+                }
+            }
+        });
+
+        function resetGrid() {
+            selectedWord = '';
+            document.querySelectorAll('.grid div').forEach(div => {
+                div.classList.remove('selected');
+            });
+        }
+    </script>
+</body>
+</html>

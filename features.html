@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Features</title>
+  
+ 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    .features-section {
+      padding: 60px 0;
+      background-color: #ffffff;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .features-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .features-header h2 {
+      font-size: 36px;
+      color: #333;
+    }
+
+    .features-header p {
+      font-size: 18px;
+      color: #777;
+    }
+
+    .feature-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 30px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background-color: #ffffff;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .feature-card h3 {
+      font-size: 24px;
+      color: #007bff;
+      margin-bottom: 20px;
+    }
+
+    .feature-card p {
+      font-size: 16px;
+      color: #555;
+    }
+
+    .feature-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .feature-card .btn {
+      background-color: #007bff;
+      color: white;
+      font-size: 16px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+
+    .feature-card .btn:hover {
+      background-color: #0056b3;
+    }
+
+    .feature-cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+  </style>
+</head>
+<body>
+
+
+  <section class="features-section">
+    <div class="container">
+      <div class="features-header">
+        <h2>Explore Our Features</h2>
+        <p>Discover the amazing ways we help you challenge your brain, have fun, and strengthen your mind.</p>
+      </div>
+
+     
+      <div class="feature-cards-container">
+
+      
+        <div class="feature-card">
+          <img src="img/puzzle.jpg" alt="Puzzle Image">
+          <h3>Play Puzzles</h3>
+          <p>Engage your brain with a variety of puzzles! Challenge yourself to solve puzzles that stimulate your thinking and improve your cognitive skills.</p>
+          <a href="puzzles.html" class="btn">Start Playing</a>
+        </div>
+
+       
+        <div class="feature-card">
+          <img src="img/riddles.jpg" alt="Riddles Image">
+          <h3>Solve Riddles</h3>
+          <p>Test your wit and sharpness with our collection of tricky riddles. Sharpen your mind with every solved riddle!</p>
+          <a href="riddles.html" class="btn">Start Solving</a>
+        </div>
+
+        
+        <div class="feature-card">
+          <img src="img/brain.jpg" alt="Brain Training Image">
+          <h3>Strengthen Your Mind</h3>
+          <p>Enhance your problem-solving and critical thinking skills. Our brain exercises are designed to help you become sharper and more focused.</p>
+          <a href="mind-training.html" class="btn">Start Training</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
